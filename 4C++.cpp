@@ -1,4 +1,4 @@
-// ConsoleApplication4.cpp: определяет точку входа для консольного приложения.
+// ConsoleApplication7.cpp: определяет точку входа для консольного приложения.
 //
 
 #include "stdafx.h"
@@ -10,78 +10,78 @@
 #include<conio.h>
 #include "windows.h"
 using namespace std;
-const int n = 5;
+const int size = 5;
 
 
 class Matrix
 {
 private:
-	int M[n][n];
+	int Matrix[size][size];
 public:
-	void InputMatrix();
-	void OutputMatrix();
-	void Sort();
-	void  solution();
+	void  InputMatrixFromConsole();
+	void OutputMatrixToConsole();
+	void BubbleSortRows();            //by ascending
+	void  Outputresult();
 	//int Product();
 	double ArithmeticMean;
 };
 
-void Matrix::InputMatrix()
+void Matrix::InputMatrixFromConsole()
 {
-	for (int i = 0; i < n; i++)
-		for (int j = 0; j < n; j++)
+	for (int i = 0; i < size; i++)
+		for (int j = 0; j < size; j++)
 		{
 			cout << "[" << i + 1 << "][" << j + 1 << "] =";
-			cin >> M[i][j];
+			cin >> Matrix[i][j];
 		}
 }
 
 
-void Matrix::OutputMatrix()
+void Matrix::OutputMatrixToConsole()
 {
-	for (int i = 0; i < n; i++)
+	for (int i = 0; i < size; i++)
 	{
-		for (int j = 0; j < n; j++)
+		for (int j = 0; j < size; j++)
 		{
-			cout << "\t" << M[i][j];
+			cout << "\t" << Matrix[i][j];
 		}
 		cout << endl;
 	}
 }
 
-void Matrix::Sort()
+void Matrix::BubbleSortRows()
 {
-	for (int i = 0; i < n; i++)
+	for (int i = 0; i < size; i++)
 	{
 		int max = 0;
-		for (int j = 0; j < n - 1; j++)
+		for (int j = 0; j < size - 1; j++)
 		{
 			max = j;
-			for (int k = j + 1; k < n; k++)
+			for (int k = j + 1; k < size; k++)
 			{
-				if (M[i][k] < M[i][max])
+				if (Matrix[i][k] < Matrix[i][max])
 				{
 					max = k;
 				}
 			}
-			int temp = M[i][max];
-			M[i][max] = M[i][j];
-			M[i][j] = temp;
+			int temp = Matrix[i][max];
+			Matrix[i][max] = Matrix[i][j];
+			Matrix[i][j] = temp;
 		}
 	}
 }
-void Matrix::solution()
+void Matrix::Outputresult()
 {
 	double product = 1;
 	double result;
 	int count = 0;
-	for (int j = 0; j < n - 1; j++)
+	for (int j = 0; j < size - 1; j++)
 	{
 		result = 0;
 		count = 0;
-		for (int i = j + 1; i < n; i++)
+		for (int i = j + 1; i < size; i++)
 		{
-			result = result + M[i][j];
+			result = result + Matrix[i][j];
 			count++;
 		}
 		ArithmeticMean = result / count;
@@ -98,14 +98,14 @@ void Matrix::solution()
 int main()
 {
 	Matrix matrix;
-	matrix.InputMatrix();
+	matrix.InputMatrixFromConsole();
 	cout << "Matrix" << endl;
-	matrix.OutputMatrix();
-	matrix.Sort();
+	matrix.OutputMatrixToConsole();
+	matrix.BubbleSortRows();
 	cout << "Sorted matrix" << endl;
-	matrix.OutputMatrix();
+	matrix.OutputMatrixToConsole();
 	cout << "Averages in columns" << endl;
-	matrix.solution();
+	matrix.Outputresult();
 
 
 
